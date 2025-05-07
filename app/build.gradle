@@ -1,1 +1,47 @@
+// app/build.gradle (Module-Level)
+apply plugin: 'com.android.application'
 
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.example.androidengine"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+
+        // تنظیمات مربوط به ساخت کدهای نیتیو با CMake
+        externalNativeBuild {
+            cmake {
+                // در اینجا می‌توانید cppFlags را در صورت نیاز تنظیم کنید
+                cppFlags ""
+            }
+        }
+
+        ndk {
+            // تعیین معماری‌های پشتیبانی شده (بهینه‌سازی برای معماری‌های اصلی اندروید)
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // استفاده از فایل‌های پیش‌فرض ProGuard برای بهینه‌سازی کد جاوا در حالت release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // تنظیمات مربوط به ساخت نیتیو با استفاده از CMake
+    externalNativeBuild {
+        cmake {
+            // مسیر فایل CMakeLists.txt در پوشه‌ی cpp قرار دارد.
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    // اگر نیاز به وابستگی‌های جاوایی دارید - اینجا اضافه کنید.
+}

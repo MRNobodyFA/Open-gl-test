@@ -2,7 +2,7 @@
     <application
         android:label="@string/app_name"
         android:icon="@mipmap/spookyminighostfa">
-        <activity android:name="com.example.androidengine.MainActivity"
+        <activity android:name=".MainActivity"
                   android:label="@string/app_name"
                   android:configChanges="orientation|screenSize"
                   android:launchMode="singleTask">

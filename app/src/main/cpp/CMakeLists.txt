@@ -1,12 +1,16 @@
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.22.1)
+project(AndroidEngine)
 
-# ایجاد کتابخانه اشتراکی "androidengine" از فایل‌های C++ (در این مثال تنها AndroidEngine.cpp)
 add_library(androidengine SHARED
-            AndroidEngine.cpp)
+    src/main/cpp/AndroidEngine.cpp)
 
-# پیدا کردن کتابخانه log (برای خروجی log در اندروید)
-find_library(log-lib
-             log)
+# اضافه کردن مسیر هدرهای ضروری
+include_directories(
+    ${ANDROID_NDK}/sources/android/native_app_glue
+)
 
-# لینک کردن کتابخانه‌های مورد نیاز: EGL و GLESv3
-target_link_libraries(androidengine ${log-lib} EGL GLESv3)
+find_library(log-lib log)
+
+target_link_libraries(androidengine
+    android
+    ${log-lib})

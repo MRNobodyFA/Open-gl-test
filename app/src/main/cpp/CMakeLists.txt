@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 project(AndroidEngine)
 
 add_library(androidengine SHARED
-    src/main/cpp/AndroidEngine.cpp)
+    app/src/main/cpp/AndroidEngine.cpp)
 
 # اضافه کردن مسیر هدرهای ضروری
 include_directories(
